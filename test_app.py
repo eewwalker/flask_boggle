@@ -22,6 +22,11 @@ class BoggleAppTestCase(TestCase):
 
         with app.test_client() as client:
             response = client.get('/')
+            html = response.get_data(as_text=True)
+            print(html)
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(
+                'This button is our homepage test', html)
             ...
             # test that you're getting a template
 
