@@ -39,7 +39,7 @@ class BoggleAppTestCase(TestCase):
     def test_score_word(self):
         """Test if word is valid"""
 
-        with self.client as client:
+        with app.test_client() as client:
             ...
             # make a post request to /api/new-game
             # get the response body as json using .get_json()
