@@ -40,6 +40,8 @@ class BoggleAppTestCase(TestCase):
             # test that the game_id is a string
             # test that the board is a list
             # test that the game_id is in the dictionary of games (imported from app.py above)
+            resp = client.post("/api/new-game",
+                               games= {} )
 
     def test_score_word(self):
         """Test if word is valid"""
