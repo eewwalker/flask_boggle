@@ -23,7 +23,6 @@ class BoggleAppTestCase(TestCase):
         with app.test_client() as client:
             response = client.get('/')
             html = response.get_data(as_text=True)
-            print(html)
             self.assertEqual(response.status_code, 200)
             self.assertIn(
                 'This button is our homepage test', html)
@@ -40,8 +39,14 @@ class BoggleAppTestCase(TestCase):
             # test that the game_id is a string
             # test that the board is a list
             # test that the game_id is in the dictionary of games (imported from app.py above)
-            resp = client.post("/api/new-game",
-                               games= {} )
+            resp = client.post("/api/new-game")
+            # TODO: Find better name
+            json = resp.get_json()
+            breakpoint()
+
+            self.assertIsInstance(json['gameId'], str)
+            self.assertIsInstance(json['board'], list)
+            self.assertIn(json['gameId'], games)
 
     def test_score_word(self):
         """Test if word is valid"""
